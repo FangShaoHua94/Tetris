@@ -1,30 +1,32 @@
+import gui.KeyHandler;
+import gui.Painter;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import model.Game;
 
 public class Main extends Application {
 
+    private static double HEIGHT=600;
+    private static double WIDTH=500;
+
     @Override
     public void start(Stage stage) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Tetris");
-//            stage.getIcons().add(new Image(getClass().getResourceAsStream("/image/icon.png")));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        Game game = new Game(gc);
+        Painter.paint(game, gc);
+        canvas.setFocusTraversable(true);
+        canvas.setOnKeyPressed(new KeyHandler());
+        Pane root = new Pane();
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Snake");
+        stage.show();
+        (new Thread(game)).start();
     }
 }
