@@ -16,7 +16,7 @@ public abstract class ShapeBlock implements Fallible,Rotatable{
     }
 
     public void fall(){
-       if(blocks.stream().allMatch(block-> block.checkFallible())) {
+       if(blocks.stream().allMatch(block-> block.isValidDownMove())) {
            blocks.forEach(block -> block.moveDown());
        }
     }

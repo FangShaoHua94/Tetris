@@ -45,27 +45,41 @@ public class Block {
         row--;
     }
 
+    public boolean isValidUpMove(){
+        return !outOfBound(row-1,col);
+    }
+
     public void moveDown(){
         row++;
+    }
+
+    public boolean isValidDownMove(){
+        return !outOfBound(row+1,col);
     }
 
     public void moveLeft(){
         col--;
     }
 
+    public boolean isValidLeftMove(){
+        return !outOfBound(row,col-1);
+    }
+
     public void moveRight(){
         col++;
     }
 
-    public boolean outOfBound(){
+    public boolean isValidRightMove(){
+        return !outOfBound(row,col+1);
+    }
+
+    public boolean outOfBound(int row, int col){
         if(row<0 || row >= MainBoard.ROW || col<0 || col>= MainBoard.COL){
             return true;
         }
         return false;
     }
 
-    public boolean checkFallible(){
-        return !(row+1 >= MainBoard.ROW);
-    }
+
 
 }

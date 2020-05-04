@@ -2,7 +2,10 @@ package gui;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import model.block.Block;
 import model.block.ShapeBlock;
+
+import java.util.ArrayList;
 
 
 public class KeyHandler implements EventHandler<KeyEvent> {
@@ -15,21 +18,31 @@ public class KeyHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
+        ArrayList<Block> blocks=currentBlock.getBlocks();
         switch (keyEvent.getCode()) {
         case UP:
-            currentBlock.getBlocks().forEach(block -> block.moveUp());
+            if(blocks.stream().allMatch(block-> block.isValidUpMove())) {
+                blocks.forEach(block -> block.moveUp());
+            }
+//            blocks.forEach(block -> block.moveUp());
             System.out.println("up");
             break;
         case DOWN:
-            currentBlock.getBlocks().forEach(block -> block.moveDown());
+            if(blocks.stream().allMatch(block-> block.isValidDownMove())) {
+                blocks.forEach(block -> block.moveDown());
+            }
             System.out.println("down");
             break;
         case LEFT:
-            currentBlock.getBlocks().forEach(block -> block.moveLeft());
+            if(blocks.stream().allMatch(block-> block.isValidLeftMove())) {
+                blocks.forEach(block -> block.moveLeft());
+            }
             System.out.println("left");
             break;
         case RIGHT:
-            currentBlock.getBlocks().forEach(block -> block.moveRight());
+            if(blocks.stream().allMatch(block-> block.isValidRightMove())) {
+                blocks.forEach(block -> block.moveRight());
+            }
             System.out.println("right");
             break;
         case SPACE:
