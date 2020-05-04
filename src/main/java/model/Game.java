@@ -8,10 +8,12 @@ import model.block.ShapeBlock;
 
 import java.util.concurrent.TimeUnit;
 
+import static model.block.IBlock.spawnIBlock;
+
 public class Game implements Runnable{
 
     private final GraphicsContext gc;
-    private final Board mainBoard;
+    private final MainBoard mainBoard;
     private final Board sideBoard;
     private Canvas canvas;
     private ShapeBlock currentBlock;
@@ -21,11 +23,10 @@ public class Game implements Runnable{
         this.canvas=canvas;
         mainBoard = new MainBoard();
         sideBoard = new SideBoard();
-        currentBlock= mainBoard.getCurrentBlock();
-        canvas.setOnKeyPressed(new KeyHandler(currentBlock));
+        generateBlock();
     }
 
-    public Board getMainBoard(){
+    public MainBoard getMainBoard(){
         return mainBoard;
     }
 
@@ -33,12 +34,19 @@ public class Game implements Runnable{
         return sideBoard;
     }
 
+    public void generateBlock(){
+        currentBlock=spawnIBlock();
+        mainBoard.addNewBlock(currentBlock);
+        canvas.setOnKeyPressed(new KeyHandler(currentBlock));
+    }
+
     @Override
     public void run() {
         while (true) {
             Painter.paint(this, gc);
+            currentBlock.fall();
             System.out.println("continue...");
-            delay(100);
+            delay(500);
         }
     }
 

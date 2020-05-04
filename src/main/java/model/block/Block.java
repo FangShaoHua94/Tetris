@@ -1,6 +1,7 @@
 package model.block;
 
 import javafx.scene.paint.Color;
+import model.MainBoard;
 
 public class Block {
 
@@ -41,22 +42,30 @@ public class Block {
     }
 
     public void moveUp(){
-        col--;
-    }
-
-    public void moveDown(){
-        col++;
-    }
-
-    public void moveLeft(){
         row--;
     }
 
-    public void moveRight(){
+    public void moveDown(){
         row++;
     }
 
-    public void fall() {
-
+    public void moveLeft(){
+        col--;
     }
+
+    public void moveRight(){
+        col++;
+    }
+
+    public boolean outOfBound(){
+        if(row<0 || row >= MainBoard.ROW || col<0 || col>= MainBoard.COL){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkFallible(){
+        return !(row+1 >= MainBoard.ROW);
+    }
+
 }

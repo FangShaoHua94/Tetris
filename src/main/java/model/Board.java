@@ -36,6 +36,4 @@ public abstract class Board {
         return startingY;
     }
 
-    public abstract ShapeBlock getCurrentBlock();
-
 }

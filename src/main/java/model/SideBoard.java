@@ -13,8 +13,4 @@ public class SideBoard extends Board{
         super(ROW, COL,STARTING_X,STARTING_Y);
     }
 
-    @Override
-    public ShapeBlock getCurrentBlock() {
-        return null;
-    }
 }

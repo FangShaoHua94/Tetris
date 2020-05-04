@@ -18,7 +18,7 @@ public class Painter {
     public static void paint(Game game, GraphicsContext gc) {
         requireNonNull(game);
         requireNonNull(gc);
-        paintMainBoard((MainBoard) game.getMainBoard(),gc);
+        paintMainBoard(game.getMainBoard(),gc);
         paintSideBoard(game.getSideBoard(),gc,Color.BROWN);
     }
 
@@ -38,12 +38,12 @@ public class Painter {
     public static void paintBlock(Block block, GraphicsContext gc){
         requireNonNull(block);
         gc.setFill(block.getColor());
-        gc.fillRect(block.getRow()* SIZE, block.getCol()* SIZE, SIZE, SIZE);
+        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, SIZE, SIZE);
         gc.setFill(BORDER_COLOR);
-        gc.fillRect(block.getRow()* SIZE, block.getCol()* SIZE, SIZE, 2);
-        gc.fillRect(block.getRow()* SIZE, block.getCol()* SIZE+SIZE, SIZE, 2);
-        gc.fillRect(block.getRow()* SIZE, block.getCol()* SIZE, 2, SIZE);
-        gc.fillRect(block.getRow()* SIZE+SIZE, block.getCol()* SIZE, 2, SIZE);
+        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, SIZE, 2);
+        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE+SIZE, SIZE, 2);
+        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, 2, SIZE);
+        gc.fillRect(block.getCol()* SIZE+SIZE, block.getRow()* SIZE, 2, SIZE);
     }
 
 
