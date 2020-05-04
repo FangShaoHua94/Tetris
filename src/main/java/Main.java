@@ -17,15 +17,14 @@ public class Main extends Application {
     public void start(Stage stage) {
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Game game = new Game(gc);
+        Game game = new Game(gc,canvas);
         Painter.paint(game, gc);
         canvas.setFocusTraversable(true);
-        canvas.setOnKeyPressed(new KeyHandler());
         Pane root = new Pane();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Snake");
+        stage.setTitle("Tetris");
         stage.show();
         (new Thread(game)).start();
     }
