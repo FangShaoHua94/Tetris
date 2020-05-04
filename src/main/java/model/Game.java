@@ -37,39 +37,48 @@ public class Game implements Runnable{
         return sideBoard;
     }
 
+    public ShapeBlock getCurrentBlock(){
+        return currentBlock;
+    }
+
     public void generateBlock(){
         currentBlock=spawnIBlock();
         mainBoard.addNewBlock(currentBlock);
-        canvas.setOnKeyPressed(new KeyHandler(currentBlock));
     }
 
     @Override
     public void run() {
         while (true) {
             Painter.paint(this, gc);
-            currentBlock.fall();
+            fall();
             System.out.println("continue...");
             delay(500);
         }
     }
 
-    public static boolean notOutOfBound(int row, int col){
+    public void fall(){
+        if(currentBlock.getBlocks().stream().allMatch(block-> isValidDownMove(block))) {
+            currentBlock.getBlocks().forEach(block -> block.moveDown());
+        }
+    }
+
+    private boolean notOutOfBound(int row, int col){
         return row >= 0 && row < ROW && col >= 0 && col < COL;
     }
 
-    public static boolean isValidRightMove(Block block){
+    public boolean isValidRightMove(Block block){
         return notOutOfBound(block.getRow(), block.getCol() + 1);
     }
 
-    public static boolean isValidLeftMove(Block block){
+    public boolean isValidLeftMove(Block block){
         return notOutOfBound(block.getRow(), block.getCol() - 1);
     }
 
-    public static boolean isValidDownMove(Block block){
+    public boolean isValidDownMove(Block block){
         return notOutOfBound(block.getRow() + 1, block.getCol());
     }
 
-    public static boolean isValidUpMove(Block block){
+    public boolean isValidUpMove(Block block){
         return notOutOfBound(block.getRow() - 1, block.getCol());
     }
 
