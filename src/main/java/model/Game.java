@@ -4,7 +4,6 @@ import gui.KeyHandler;
 import gui.Painter;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import model.block.Block;
 import model.block.ShapeBlock;
 
 import java.util.concurrent.TimeUnit;
@@ -39,7 +38,7 @@ public class Game implements Runnable{
         while (true) {
             Painter.paint(this, gc);
             System.out.println("continue...");
-            delay(500);
+            delay(100);
         }
     }
 

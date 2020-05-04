@@ -12,7 +12,6 @@ public abstract class Board {
     private final double startingX;
     private final double startingY;
 
-
     public Board(int row,int col,double startingX, double startingY) {
         this.row=row;
         this.col=col;

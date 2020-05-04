@@ -3,7 +3,6 @@ package gui;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-import javafx.scene.shape.ArcType;
 import model.Board;
 import model.Game;
 import model.MainBoard;
@@ -36,7 +35,7 @@ public class Painter {
         gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol()* SIZE, board.getRow() * SIZE);
     }
 
-    private static void paintBlock(Block block, GraphicsContext gc){
+    public static void paintBlock(Block block, GraphicsContext gc){
         requireNonNull(block);
         gc.setFill(block.getColor());
         gc.fillRect(block.getRow()* SIZE, block.getCol()* SIZE, SIZE, SIZE);

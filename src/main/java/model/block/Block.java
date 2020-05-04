@@ -27,20 +27,17 @@ public class Block {
         return color;
     }
 
-    public Block duplicateBlockAbove(){
-        return new Block(row-1,col,color);
+    public void setRow(int row){
+        setPos(col,row);
     }
 
-    public Block duplicateBlockBelow(){
-        return new Block(row+1,col,color);
+    public void setCol(int col){
+        setPos(col,row);
     }
 
-    public Block duplicateBlockOnLeft(){
-        return new Block(row,col-1,color);
-    }
-
-    public Block duplicateBlockOnRight(){
-        return new Block(row+1,col,color);
+    public void setPos(int row,int col){
+        this.row=row;
+        this.col=col;
     }
 
     public void moveUp(){

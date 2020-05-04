@@ -32,6 +32,9 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             currentBlock.getBlocks().forEach(block -> block.moveRight());
             System.out.println("right");
             break;
+        case SPACE:
+            currentBlock.rotate();
+            System.out.println("rotate");
         default:
             break;
         }
