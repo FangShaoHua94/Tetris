@@ -41,7 +41,6 @@ public class IBlock extends ShapeBlock{
             blocks.get(2).setPos(pivotRow-1,pivotCol);
             blocks.get(3).setPos(pivotRow-2,pivotCol);
 
-
             state=State.VERTICAL;
             System.out.println("vertical");
             break;

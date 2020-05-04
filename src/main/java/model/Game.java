@@ -4,10 +4,13 @@ import gui.KeyHandler;
 import gui.Painter;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import model.block.Block;
 import model.block.ShapeBlock;
 
 import java.util.concurrent.TimeUnit;
 
+import static model.MainBoard.COL;
+import static model.MainBoard.ROW;
 import static model.block.IBlock.spawnIBlock;
 
 public class Game implements Runnable{
@@ -48,6 +51,26 @@ public class Game implements Runnable{
             System.out.println("continue...");
             delay(500);
         }
+    }
+
+    public static boolean notOutOfBound(int row, int col){
+        return row >= 0 && row < ROW && col >= 0 && col < COL;
+    }
+
+    public static boolean isValidRightMove(Block block){
+        return notOutOfBound(block.getRow(), block.getCol() + 1);
+    }
+
+    public static boolean isValidLeftMove(Block block){
+        return notOutOfBound(block.getRow(), block.getCol() - 1);
+    }
+
+    public static boolean isValidDownMove(Block block){
+        return notOutOfBound(block.getRow() + 1, block.getCol());
+    }
+
+    public static boolean isValidUpMove(Block block){
+        return notOutOfBound(block.getRow() - 1, block.getCol());
     }
 
     private void delay(long delayTime) {

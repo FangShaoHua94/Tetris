@@ -7,6 +7,11 @@ import model.block.ShapeBlock;
 
 import java.util.ArrayList;
 
+import static model.Game.isValidDownMove;
+import static model.Game.isValidLeftMove;
+import static model.Game.isValidRightMove;
+import static model.Game.isValidUpMove;
+
 
 public class KeyHandler implements EventHandler<KeyEvent> {
 
@@ -21,26 +26,25 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         ArrayList<Block> blocks=currentBlock.getBlocks();
         switch (keyEvent.getCode()) {
         case UP:
-            if(blocks.stream().allMatch(block-> block.isValidUpMove())) {
+            if(blocks.stream().allMatch(block-> isValidUpMove(block))) {
                 blocks.forEach(block -> block.moveUp());
             }
-//            blocks.forEach(block -> block.moveUp());
             System.out.println("up");
             break;
         case DOWN:
-            if(blocks.stream().allMatch(block-> block.isValidDownMove())) {
+            if(blocks.stream().allMatch(block-> isValidDownMove(block))) {
                 blocks.forEach(block -> block.moveDown());
             }
             System.out.println("down");
             break;
         case LEFT:
-            if(blocks.stream().allMatch(block-> block.isValidLeftMove())) {
+            if(blocks.stream().allMatch(block-> isValidLeftMove(block))) {
                 blocks.forEach(block -> block.moveLeft());
             }
             System.out.println("left");
             break;
         case RIGHT:
-            if(blocks.stream().allMatch(block-> block.isValidRightMove())) {
+            if(blocks.stream().allMatch(block-> isValidRightMove(block))) {
                 blocks.forEach(block -> block.moveRight());
             }
             System.out.println("right");

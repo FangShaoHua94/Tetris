@@ -10,6 +10,8 @@ import model.block.Block;
 
 import static java.util.Objects.requireNonNull;
 import static model.Board.SIZE;
+import static model.MainBoard.COL;
+import static model.MainBoard.ROW;
 import static model.block.Block.BORDER_COLOR;
 
 
@@ -26,7 +28,14 @@ public class Painter {
         requireNonNull(board);
         gc.setFill(Color.WHITE);
         gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol()* SIZE, board.getRow() * SIZE);
-        board.getMainBoard().forEach(block->paintBlock(block,gc));
+        for(int i=0;i<ROW;i++){
+            for(int j=0;j<COL;j++){
+                Block block=board.getMainBoard()[i][j];
+                if(block!=null){
+                    paintBlock(block,gc);
+                }
+            }
+        }
     }
 
     private static void paintSideBoard(Board board, GraphicsContext gc,Color color) {
@@ -36,7 +45,9 @@ public class Painter {
     }
 
     public static void paintBlock(Block block, GraphicsContext gc){
-        requireNonNull(block);
+        if(block==null){
+            return;
+        }
         gc.setFill(block.getColor());
         gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, SIZE, SIZE);
         gc.setFill(BORDER_COLOR);

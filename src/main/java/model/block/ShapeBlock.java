@@ -2,6 +2,8 @@ package model.block;
 
 import java.util.ArrayList;
 
+import static model.Game.isValidDownMove;
+
 public abstract class ShapeBlock implements Fallible,Rotatable{
 
     public static final int SPAWNING_ROW=0;
@@ -16,7 +18,7 @@ public abstract class ShapeBlock implements Fallible,Rotatable{
     }
 
     public void fall(){
-       if(blocks.stream().allMatch(block-> block.isValidDownMove())) {
+       if(blocks.stream().allMatch(block-> isValidDownMove(block))) {
            blocks.forEach(block -> block.moveDown());
        }
     }
