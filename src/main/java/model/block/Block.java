@@ -1,7 +1,6 @@
 package model.block;
 
 import javafx.scene.paint.Color;
-import model.MainBoard;
 
 public class Block {
 
@@ -26,14 +25,6 @@ public class Block {
 
     public Color getColor(){
         return color;
-    }
-
-    public void setRow(int row){
-        setPos(col,row);
-    }
-
-    public void setCol(int col){
-        setPos(col,row);
     }
 
     public void setPos(int row,int col){

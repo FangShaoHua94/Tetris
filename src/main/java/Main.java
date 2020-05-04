@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Game game = new Game(gc,canvas);
+        Game game = new Game(gc);
         Painter.paint(game, gc);
         canvas.setOnKeyPressed(new KeyHandler(game));
         canvas.setFocusTraversable(true);

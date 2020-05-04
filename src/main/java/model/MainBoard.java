@@ -24,6 +24,23 @@ public class MainBoard extends Board{
         return mainBoard;
     }
 
+    public boolean emptyBlock(int row, int col){
+        return mainBoard[row][col]==null;
+    }
+
+    public void print(){
+        for(int i=0;i<ROW;i++){
+            for(int j=0;j<COL;j++){
+                if(mainBoard[i][j]!=null){
+                    System.out.print("x ");
+                }else{
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("---------------------------------------------------");
+    }
 
 
 }

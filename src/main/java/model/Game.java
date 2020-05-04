@@ -1,8 +1,6 @@
 package model;
 
-import gui.KeyHandler;
 import gui.Painter;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import model.block.Block;
 import model.block.ShapeBlock;
@@ -15,15 +13,15 @@ import static model.block.IBlock.spawnIBlock;
 
 public class Game implements Runnable{
 
+    private static final long DELAY=300;
+
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
     private final Board sideBoard;
-    private Canvas canvas;
     private ShapeBlock currentBlock;
 
-    public Game(GraphicsContext gc, Canvas canvas){
+    public Game(GraphicsContext gc){
         this.gc=gc;
-        this.canvas=canvas;
         mainBoard = new MainBoard();
         sideBoard = new SideBoard();
         generateBlock();
@@ -50,16 +48,22 @@ public class Game implements Runnable{
     public void run() {
         while (true) {
             Painter.paint(this, gc);
-            fall();
-            System.out.println("continue...");
-            delay(500);
+            if(!fall()){
+                generateBlock();
+                System.out.println("generate block");
+            };
+//            System.out.println("continue...");
+            mainBoard.print();
+            delay();
         }
     }
 
-    public void fall(){
-        if(currentBlock.getBlocks().stream().allMatch(block-> isValidDownMove(block))) {
-            currentBlock.getBlocks().forEach(block -> block.moveDown());
+    public boolean fall(){
+        if(currentBlock.getBlocks().stream().allMatch(this::isValidDownMove)) {
+            currentBlock.getBlocks().forEach(Block::moveDown);
+            return true;
         }
+        return false;
     }
 
     private boolean notOutOfBound(int row, int col){
@@ -67,24 +71,24 @@ public class Game implements Runnable{
     }
 
     public boolean isValidRightMove(Block block){
-        return notOutOfBound(block.getRow(), block.getCol() + 1);
+        return notOutOfBound(block.getRow(), block.getCol() + 1) && mainBoard.emptyBlock(block.getRow(),block.getCol() + 1);
     }
 
     public boolean isValidLeftMove(Block block){
-        return notOutOfBound(block.getRow(), block.getCol() - 1);
+        return notOutOfBound(block.getRow(), block.getCol() - 1) && mainBoard.emptyBlock(block.getRow(),block.getCol() - 1);
     }
 
     public boolean isValidDownMove(Block block){
-        return notOutOfBound(block.getRow() + 1, block.getCol());
+        return notOutOfBound(block.getRow() + 1, block.getCol()) && mainBoard.emptyBlock(block.getRow()+1,block.getCol());
     }
 
     public boolean isValidUpMove(Block block){
-        return notOutOfBound(block.getRow() - 1, block.getCol());
+        return notOutOfBound(block.getRow() - 1, block.getCol()) && mainBoard.emptyBlock(block.getRow()-1,block.getCol() + 1);
     }
 
-    private void delay(long delayTime) {
+    private void delay() {
         try {
-            TimeUnit.MILLISECONDS.sleep(delayTime);
+            TimeUnit.MILLISECONDS.sleep(DELAY);
         } catch (InterruptedException ie) {
             //suppress
         }
