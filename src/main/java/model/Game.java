@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import static model.MainBoard.COL;
 import static model.MainBoard.ROW;
 import static model.block.IBlock.spawnIBlock;
+import static model.block.JBlock.spawnJBlock;
 
 public class Game implements Runnable {
 
@@ -40,7 +41,7 @@ public class Game implements Runnable {
     }
 
     public void generateBlock() {
-        currentBlock = spawnIBlock();
+        currentBlock = spawnJBlock();
         mainBoard.addNewBlock(currentBlock);
     }
 
