@@ -30,28 +30,28 @@ public class JBlock extends ShapeBlock {
     @Override
     public ArrayList<Block> rotatingBlocks() {
         ArrayList<Block> blocks = new ArrayList<>();
-        int pivotRow = getBlocks().get(1).getRow();
-        int pivotCol = getBlocks().get(1).getCol();
+        int pivotRow = getBlocks().get(2).getRow();
+        int pivotCol = getBlocks().get(2).getCol();
         switch (state) {
         case RIGHT:
-            blocks.add(new Block(pivotRow, pivotCol-1, COLOR));
+            blocks.add(new Block(pivotRow+1, pivotCol-1, COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol, COLOR));
             blocks.add(new Block(pivotRow - 1, pivotCol, COLOR));
-            blocks.add(new Block(pivotRow - 2, pivotCol, COLOR));
             break;
         case UP:
-            blocks.add(new Block(pivotRow + 1, pivotCol, COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol+1, COLOR));
+            blocks.add(new Block(pivotRow, pivotCol+1, COLOR));
             blocks.add(new Block(pivotRow, pivotCol-1, COLOR));
-            blocks.add(new Block(pivotRow, pivotCol-2, COLOR));
             break;
         case LEFT:
-            blocks.add(new Block(pivotRow, pivotCol+1, COLOR));
+            blocks.add(new Block(pivotRow-1, pivotCol+1, COLOR));
+            blocks.add(new Block(pivotRow-1, pivotCol, COLOR));
             blocks.add(new Block(pivotRow+1, pivotCol, COLOR));
-            blocks.add(new Block(pivotRow+2, pivotCol, COLOR));
             break;
         case DOWN:
-            blocks.add(new Block(pivotRow-1, pivotCol, COLOR));
+            blocks.add(new Block(pivotRow-1, pivotCol-1, COLOR));
+            blocks.add(new Block(pivotRow, pivotCol-1, COLOR));
             blocks.add(new Block(pivotRow, pivotCol+1, COLOR));
-            blocks.add(new Block(pivotRow, pivotCol+2, COLOR));
             break;
         default:
             break;
@@ -62,31 +62,31 @@ public class JBlock extends ShapeBlock {
     @Override
     public void rotate() {
         ArrayList<Block> blocks = getBlocks();
-        int pivotRow = blocks.get(1).getRow();
-        int pivotCol = blocks.get(1).getCol();
+        int pivotRow = blocks.get(2).getRow();
+        int pivotCol = blocks.get(2).getCol();
         switch (state) {
         case RIGHT:
-            blocks.get(0).setPos(pivotRow, pivotCol-1);
-            blocks.get(2).setPos(pivotRow - 1, pivotCol);
-            blocks.get(3).setPos(pivotRow - 2, pivotCol);
+            blocks.get(0).setPos(pivotRow+1, pivotCol-1);
+            blocks.get(1).setPos(pivotRow +1, pivotCol);
+            blocks.get(3).setPos(pivotRow - 1, pivotCol);
             state = State.UP;
             break;
         case UP:
-            blocks.get(0).setPos(pivotRow + 1, pivotCol);
-            blocks.get(2).setPos(pivotRow, pivotCol-1);
-            blocks.get(3).setPos(pivotRow, pivotCol-2);
+            blocks.get(0).setPos(pivotRow+1, pivotCol+1);
+            blocks.get(1).setPos(pivotRow, pivotCol+1);
+            blocks.get(3).setPos(pivotRow, pivotCol-1);
             state = State.LEFT;
             break;
         case LEFT:
-            blocks.get(0).setPos(pivotRow, pivotCol+1);
-            blocks.get(2).setPos(pivotRow+1, pivotCol);
-            blocks.get(3).setPos(pivotRow+2, pivotCol);
+            blocks.get(0).setPos(pivotRow-1, pivotCol+1);
+            blocks.get(1).setPos(pivotRow-1, pivotCol);
+            blocks.get(3).setPos(pivotRow+1, pivotCol);
             state = State.DOWN;
             break;
         case DOWN:
-            blocks.get(0).setPos(pivotRow-1, pivotCol);
-            blocks.get(2).setPos(pivotRow, pivotCol+1);
-            blocks.get(3).setPos(pivotRow, pivotCol+2);
+            blocks.get(0).setPos(pivotRow-1, pivotCol-1);
+            blocks.get(1).setPos(pivotRow, pivotCol-1);
+            blocks.get(3).setPos(pivotRow, pivotCol+1);
             state = State.RIGHT;
             break;
         default:
