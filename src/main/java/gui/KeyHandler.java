@@ -28,34 +28,36 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             if(blocks.stream().allMatch(block-> game.isValidUpMove(block))) {
                 blocks.forEach(Block::moveUp);
                 game.getMainBoard().update();
+                System.out.println("up");
             }
-            System.out.println("up");
             break;
         case DOWN:
             if(blocks.stream().allMatch(block-> game.isValidDownMove(block))) {
                 blocks.forEach(Block::moveDown);
                 game.getMainBoard().update();
+                System.out.println("down");
             }
-            System.out.println("down");
             break;
         case LEFT:
             if(blocks.stream().allMatch(block-> game.isValidLeftMove(block))) {
                 blocks.forEach(Block::moveLeft);
                 game.getMainBoard().update();
+                System.out.println("left");
             }
-            System.out.println("left");
             break;
         case RIGHT:
             if(blocks.stream().allMatch(block-> game.isValidRightMove(block))) {
                 blocks.forEach(Block::moveRight);
                 game.getMainBoard().update();
+                System.out.println("right");
             }
-            System.out.println("right");
             break;
         case SPACE:
-            currentBlock.rotate();
-            game.getMainBoard().update();
-            System.out.println("rotate");
+            if(currentBlock.rotatingBlocks().stream().allMatch(block -> game.isValidRotate(block.getRow(),block.getCol()))){
+                currentBlock.rotate();
+                game.getMainBoard().update();
+                System.out.println("rotate");
+            }
         default:
             break;
         }

@@ -91,6 +91,10 @@ public class Game implements Runnable{
         return notOutOfBound(block.getRow() - 1, block.getCol()) && mainBoard.validMove(block.getRow()-1,block.getCol() + 1);
     }
 
+    public boolean isValidRotate(int row,int col){
+        return notOutOfBound(row, col) && mainBoard.validMove(row,col);
+    }
+
     private void delay() {
         try {
             TimeUnit.MILLISECONDS.sleep(DELAY);

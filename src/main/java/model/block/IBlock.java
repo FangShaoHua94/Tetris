@@ -31,6 +31,28 @@ public class IBlock extends ShapeBlock{
     }
 
     @Override
+    public ArrayList<Block> rotatingBlocks(){
+        ArrayList<Block> blocks = new ArrayList<>();
+        int pivotRow = getBlocks().get(1).getRow();
+        int pivotCol = getBlocks().get(1).getCol();
+        switch (state){
+        case HORIZONTAL:
+            blocks.add(new Block(pivotRow+1,pivotCol,COLOR));
+            blocks.add(new Block(pivotRow-1,pivotCol,COLOR));
+            blocks.add(new Block(pivotRow-2,pivotCol,COLOR));
+            break;
+        case VERTICAL:
+            blocks.add(new Block(pivotRow,pivotCol-1,COLOR));
+            blocks.add(new Block(pivotRow,pivotCol+1,COLOR));
+            blocks.add(new Block(pivotRow,pivotCol+2,COLOR));
+            break;
+        default:
+            break;
+        }
+        return blocks;
+    }
+
+    @Override
     public void rotate(){
         ArrayList<Block> blocks= getBlocks();
         int pivotRow = blocks.get(1).getRow();
