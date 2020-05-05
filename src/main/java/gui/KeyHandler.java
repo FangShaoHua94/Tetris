@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.event.EventHandler;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import model.Game;
 import model.block.Block;
@@ -11,9 +12,11 @@ import java.util.ArrayList;
 public class KeyHandler implements EventHandler<KeyEvent> {
 
     private Game game;
+    private GraphicsContext gc;
 
-    public KeyHandler(Game game){
+    public KeyHandler(Game game, GraphicsContext gc){
         this.game=game;
+        this.gc=gc;
     }
 
     @Override
@@ -56,5 +59,6 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         default:
             break;
         }
+        Painter.paint(game,gc);
     }
 }

@@ -19,7 +19,7 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Game game = new Game(gc);
         Painter.paint(game, gc);
-        canvas.setOnKeyPressed(new KeyHandler(game));
+        canvas.setOnKeyPressed(new KeyHandler(game,gc));
         canvas.setFocusTraversable(true);
         Pane root = new Pane();
         root.getChildren().add(canvas);

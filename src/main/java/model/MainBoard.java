@@ -59,5 +59,25 @@ public class MainBoard extends Board{
         System.out.println("---------------------------------------------------");
     }
 
+    public boolean ClearLine(){
+        boolean clearLine=false;
+        for(int i=0;i<ROW;i++){
+            boolean lineFilled=true;
+            for(int j=0;j<COL;j++){
+                if(mainBoard[i][j]==null){
+                    lineFilled=false;
+                    break;
+                }
+            }
+            if(lineFilled){
+                for(int j=0;j<COL;j++){
+                    mainBoard[i][j]=null;
+                }
+                clearLine=true;
+            }
+        }
+        return clearLine;
+    }
+
 
 }

@@ -13,7 +13,7 @@ import static model.block.IBlock.spawnIBlock;
 
 public class Game implements Runnable{
 
-    private static final long DELAY=500;
+    private static final long DELAY=200;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
@@ -49,6 +49,10 @@ public class Game implements Runnable{
         while (true) {
             Painter.paint(this, gc);
             if(!fall()){
+                if(mainBoard.ClearLine()){
+//                flickingEffect();
+                    System.out.println("line cleared");
+                }
                 generateBlock();
                 System.out.println("generate block");
             };
