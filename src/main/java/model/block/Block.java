@@ -2,6 +2,8 @@ package model.block;
 
 import javafx.scene.paint.Color;
 
+import java.security.PublicKey;
+
 public class Block {
 
     public static final Color BORDER_COLOR =Color.BLACK;
@@ -25,6 +27,10 @@ public class Block {
 
     public Color getColor(){
         return color;
+    }
+
+    public void setRow(int row){
+        setPos(row,col);
     }
 
     public void setPos(int row,int col){

@@ -13,6 +13,7 @@ public class MainBoard extends Board{
     private static final double STARTING_Y=0;
     private ShapeBlock currentBlock;
     private Block[][] mainBoard;
+    private int lineCleaned;
 
     public MainBoard(){
         super(ROW, COL,STARTING_X,STARTING_Y);
@@ -60,6 +61,7 @@ public class MainBoard extends Board{
     }
 
     public boolean ClearLine(){
+        lineCleaned=0;
         boolean clearLine=false;
         for(int i=0;i<ROW;i++){
             boolean lineFilled=true;
@@ -70,6 +72,7 @@ public class MainBoard extends Board{
                 }
             }
             if(lineFilled){
+                lineCleaned++;
                 for(int j=0;j<COL;j++){
                     mainBoard[i][j]=null;
                 }
@@ -77,6 +80,16 @@ public class MainBoard extends Board{
             }
         }
         return clearLine;
+    }
+
+    public void shiftAfterClear(){
+        for(int i=ROW-1;i>=0;i--){
+            for(int j=0;j<COL;j++){
+                if(mainBoard[i][j]!=null){
+                    mainBoard[i][j].setRow(i+lineCleaned);
+                }
+            }
+        }
     }
 
 

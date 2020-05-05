@@ -52,6 +52,8 @@ public class Game implements Runnable{
                 if(mainBoard.ClearLine()){
 //                flickingEffect();
                     System.out.println("line cleared");
+                    mainBoard.shiftAfterClear();
+                    Painter.paint(this, gc);
                 }
                 generateBlock();
                 System.out.println("generate block");
