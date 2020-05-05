@@ -9,13 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static model.MainBoard.COL;
 import static model.MainBoard.ROW;
-import static model.block.IBlock.spawnIBlock;
-import static model.block.JBlock.spawnJBlock;
-import static model.block.LBlock.spawnLBlock;
-import static model.block.OBlock.spawnOBlock;
-import static model.block.SBlock.spawnSBlock;
-import static model.block.TBlock.spawnTBlock;
-import static model.block.ZBlock.spawnZBlock;
+import static model.block.ShapeBlock.spawnBlock;
 
 public class Game implements Runnable {
 
@@ -46,7 +40,7 @@ public class Game implements Runnable {
     }
 
     public void generateBlock() {
-        currentBlock = spawnTBlock();
+        currentBlock = spawnBlock();
         mainBoard.addNewBlock(currentBlock);
     }
 
