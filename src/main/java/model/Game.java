@@ -13,7 +13,7 @@ import static model.block.IBlock.spawnIBlock;
 
 public class Game implements Runnable{
 
-    private static final long DELAY=300;
+    private static final long DELAY=500;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
@@ -61,6 +61,7 @@ public class Game implements Runnable{
     public boolean fall(){
         if(currentBlock.getBlocks().stream().allMatch(this::isValidDownMove)) {
             currentBlock.getBlocks().forEach(Block::moveDown);
+            mainBoard.update();
             return true;
         }
         return false;
@@ -71,19 +72,19 @@ public class Game implements Runnable{
     }
 
     public boolean isValidRightMove(Block block){
-        return notOutOfBound(block.getRow(), block.getCol() + 1) && mainBoard.emptyBlock(block.getRow(),block.getCol() + 1);
+        return notOutOfBound(block.getRow(), block.getCol() + 1) && mainBoard.validMove(block.getRow(),block.getCol() + 1);
     }
 
     public boolean isValidLeftMove(Block block){
-        return notOutOfBound(block.getRow(), block.getCol() - 1) && mainBoard.emptyBlock(block.getRow(),block.getCol() - 1);
+        return notOutOfBound(block.getRow(), block.getCol() - 1) && mainBoard.validMove(block.getRow(),block.getCol() - 1);
     }
 
     public boolean isValidDownMove(Block block){
-        return notOutOfBound(block.getRow() + 1, block.getCol()) && mainBoard.emptyBlock(block.getRow()+1,block.getCol());
+        return notOutOfBound(block.getRow() + 1, block.getCol()) && mainBoard.validMove(block.getRow()+1,block.getCol());
     }
 
     public boolean isValidUpMove(Block block){
-        return notOutOfBound(block.getRow() - 1, block.getCol()) && mainBoard.emptyBlock(block.getRow()-1,block.getCol() + 1);
+        return notOutOfBound(block.getRow() - 1, block.getCol()) && mainBoard.validMove(block.getRow()-1,block.getCol() + 1);
     }
 
     private void delay() {
