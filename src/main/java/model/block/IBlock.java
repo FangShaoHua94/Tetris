@@ -4,47 +4,43 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class IBlock extends ShapeBlock{
+public class IBlock extends ShapeBlock {
 
-    private static final Color COLOR=Color.SKYBLUE;
+    private static final Color COLOR = Color.SKYBLUE;
     private State state;
 
-    enum State{
-        HORIZONTAL,VERTICAL
+    enum State {
+        HORIZONTAL, VERTICAL
     }
 
     public IBlock(ArrayList<Block> blocks) {
         super(blocks);
-        state=State.HORIZONTAL;
+        state = State.HORIZONTAL;
     }
 
-    public static IBlock spawnIBlock(){
-        ArrayList<Block> blocks=new ArrayList<>();
-//        for(int i=3;i<7;i++){
-//            blocks.add(new Block(SPAWNING_ROW,i,COLOR));
-//        }
-        blocks.add(new Block(0,3,Color.RED));
-        blocks.add(new Block(0,4,Color.GREEN));
-        blocks.add(new Block(0,5,Color.ORANGE));
-        blocks.add(new Block(0,6,Color.PURPLE));
+    public static IBlock spawnIBlock() {
+        ArrayList<Block> blocks = new ArrayList<>();
+        for (int i = 3; i < 7; i++) {
+            blocks.add(new Block(SPAWNING_ROW, i, COLOR));
+        }
         return new IBlock(blocks);
     }
 
     @Override
-    public ArrayList<Block> rotatingBlocks(){
+    public ArrayList<Block> rotatingBlocks() {
         ArrayList<Block> blocks = new ArrayList<>();
         int pivotRow = getBlocks().get(1).getRow();
         int pivotCol = getBlocks().get(1).getCol();
-        switch (state){
+        switch (state) {
         case HORIZONTAL:
-            blocks.add(new Block(pivotRow+1,pivotCol,COLOR));
-            blocks.add(new Block(pivotRow-1,pivotCol,COLOR));
-            blocks.add(new Block(pivotRow-2,pivotCol,COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol, COLOR));
+            blocks.add(new Block(pivotRow - 1, pivotCol, COLOR));
+            blocks.add(new Block(pivotRow - 2, pivotCol, COLOR));
             break;
         case VERTICAL:
-            blocks.add(new Block(pivotRow,pivotCol-1,COLOR));
-            blocks.add(new Block(pivotRow,pivotCol+1,COLOR));
-            blocks.add(new Block(pivotRow,pivotCol+2,COLOR));
+            blocks.add(new Block(pivotRow, pivotCol - 1, COLOR));
+            blocks.add(new Block(pivotRow, pivotCol + 1, COLOR));
+            blocks.add(new Block(pivotRow, pivotCol + 2, COLOR));
             break;
         default:
             break;
@@ -53,26 +49,24 @@ public class IBlock extends ShapeBlock{
     }
 
     @Override
-    public void rotate(){
-        ArrayList<Block> blocks= getBlocks();
+    public void rotate() {
+        ArrayList<Block> blocks = getBlocks();
         int pivotRow = blocks.get(1).getRow();
         int pivotCol = blocks.get(1).getCol();
-        switch (state){
+        switch (state) {
         case HORIZONTAL:
-            blocks.get(0).setPos(pivotRow+1,pivotCol);
-            blocks.get(2).setPos(pivotRow-1,pivotCol);
-            blocks.get(3).setPos(pivotRow-2,pivotCol);
+            blocks.get(0).setPos(pivotRow + 1, pivotCol);
+            blocks.get(2).setPos(pivotRow - 1, pivotCol);
+            blocks.get(3).setPos(pivotRow - 2, pivotCol);
 
-            state=State.VERTICAL;
-            System.out.println("vertical");
+            state = State.VERTICAL;
             break;
         case VERTICAL:
-            blocks.get(0).setPos(pivotRow,pivotCol-1);
-            blocks.get(2).setPos(pivotRow,pivotCol+1);
-            blocks.get(3).setPos(pivotRow,pivotCol+2);
+            blocks.get(0).setPos(pivotRow, pivotCol - 1);
+            blocks.get(2).setPos(pivotRow, pivotCol + 1);
+            blocks.get(3).setPos(pivotRow, pivotCol + 2);
 
-            state=State.HORIZONTAL;
-            System.out.println("horizontal");
+            state = State.HORIZONTAL;
             break;
         default:
             break;

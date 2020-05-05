@@ -10,8 +10,8 @@ import model.Game;
 
 public class Main extends Application {
 
-    private static double HEIGHT=600;
-    private static double WIDTH=500;
+    private static double HEIGHT = 600;
+    private static double WIDTH = 500;
 
     @Override
     public void start(Stage stage) {
@@ -19,7 +19,7 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Game game = new Game(gc);
         Painter.paint(game, gc);
-        canvas.setOnKeyPressed(new KeyHandler(game,gc));
+        canvas.setOnKeyPressed(new KeyHandler(game, gc));
         canvas.setFocusTraversable(true);
         Pane root = new Pane();
         root.getChildren().add(canvas);

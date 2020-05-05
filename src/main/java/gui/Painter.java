@@ -20,41 +20,41 @@ public class Painter {
     public static void paint(Game game, GraphicsContext gc) {
         requireNonNull(game);
         requireNonNull(gc);
-        paintMainBoard(game.getMainBoard(),gc);
-        paintSideBoard(game.getSideBoard(),gc,Color.BROWN);
+        paintMainBoard(game.getMainBoard(), gc);
+        paintSideBoard(game.getSideBoard(), gc, Color.BROWN);
     }
 
     private static void paintMainBoard(MainBoard board, GraphicsContext gc) {
         requireNonNull(board);
-        gc.setFill(Color.WHITE);
-        gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol()* SIZE, board.getRow() * SIZE);
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<COL;j++){
-                Block block=board.getMainBoard()[i][j];
-                if(block!=null){
-                    paintBlock(block,gc);
+        gc.setFill(Color.BLACK);
+        gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol() * SIZE, board.getRow() * SIZE);
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                Block block = board.getMainBoard()[i][j];
+                if (block != null) {
+                    paintBlock(block, gc);
                 }
             }
         }
     }
 
-    private static void paintSideBoard(Board board, GraphicsContext gc,Color color) {
+    private static void paintSideBoard(Board board, GraphicsContext gc, Color color) {
         requireNonNull(board);
         gc.setFill(color);
-        gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol()* SIZE, board.getRow() * SIZE);
+        gc.fillRect(board.getStartingX(), board.getStartingY(), board.getCol() * SIZE, board.getRow() * SIZE);
     }
 
-    public static void paintBlock(Block block, GraphicsContext gc){
-        if(block==null){
+    public static void paintBlock(Block block, GraphicsContext gc) {
+        if (block == null) {
             return;
         }
         gc.setFill(block.getColor());
-        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, SIZE, SIZE);
+        gc.fillRect(block.getCol() * SIZE, block.getRow() * SIZE, SIZE, SIZE);
         gc.setFill(BORDER_COLOR);
-        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, SIZE, 2);
-        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE+SIZE, SIZE, 2);
-        gc.fillRect(block.getCol()* SIZE, block.getRow()* SIZE, 2, SIZE);
-        gc.fillRect(block.getCol()* SIZE+SIZE, block.getRow()* SIZE, 2, SIZE);
+        gc.fillRect(block.getCol() * SIZE, block.getRow() * SIZE, SIZE, 2);
+        gc.fillRect(block.getCol() * SIZE, block.getRow() * SIZE + SIZE, SIZE, 2);
+        gc.fillRect(block.getCol() * SIZE, block.getRow() * SIZE, 2, SIZE);
+        gc.fillRect(block.getCol() * SIZE + SIZE, block.getRow() * SIZE, 2, SIZE);
     }
 
 

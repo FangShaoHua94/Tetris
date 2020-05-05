@@ -5,18 +5,18 @@ import model.block.ShapeBlock;
 
 public abstract class Board {
 
-    public static final double SIZE=25;
+    public static final double SIZE = 25;
 
     private final int row;
     private final int col;
     private final double startingX;
     private final double startingY;
 
-    public Board(int row,int col,double startingX, double startingY) {
-        this.row=row;
-        this.col=col;
-        this.startingX=startingX;
-        this.startingY=startingY;
+    public Board(int row, int col, double startingX, double startingY) {
+        this.row = row;
+        this.col = col;
+        this.startingX = startingX;
+        this.startingY = startingY;
 
     }
 
