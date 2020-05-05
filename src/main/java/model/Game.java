@@ -11,6 +11,7 @@ import static model.MainBoard.COL;
 import static model.MainBoard.ROW;
 import static model.block.IBlock.spawnIBlock;
 import static model.block.JBlock.spawnJBlock;
+import static model.block.LBlock.spawnLBlock;
 
 public class Game implements Runnable {
 
@@ -41,7 +42,7 @@ public class Game implements Runnable {
     }
 
     public void generateBlock() {
-        currentBlock = spawnJBlock();
+        currentBlock = spawnLBlock();
         mainBoard.addNewBlock(currentBlock);
     }
 
