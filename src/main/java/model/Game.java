@@ -49,17 +49,16 @@ public class Game implements Runnable{
         while (true) {
             Painter.paint(this, gc);
             if(!fall()){
-                if(mainBoard.ClearLine()){
+                if(mainBoard.clearLine()){
 //                flickingEffect();
                     System.out.println("line cleared");
-                    mainBoard.shiftAfterClear();
                     Painter.paint(this, gc);
                 }
                 generateBlock();
                 System.out.println("generate block");
             };
 //            System.out.println("continue...");
-            mainBoard.print();
+//            mainBoard.print();
             delay();
         }
     }
