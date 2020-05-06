@@ -20,7 +20,7 @@ public class IBlock extends ShapeBlock {
 
     public static IBlock spawnIBlock() {
         ArrayList<Block> blocks = new ArrayList<>();
-        for (int i = 3; i < 7; i++) {
+        for (int i = 4; i < 8; i++) {
             blocks.add(new Block(SPAWNING_ROW, i, COLOR));
         }
         return new IBlock(blocks);

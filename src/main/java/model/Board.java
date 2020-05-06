@@ -1,8 +1,5 @@
 package model;
 
-import model.block.Block;
-import model.block.ShapeBlock;
-
 public abstract class Board {
 
     public static final double SIZE = 25;
@@ -17,7 +14,10 @@ public abstract class Board {
         this.col = col;
         this.startingX = startingX;
         this.startingY = startingY;
+    }
 
+    public Board(double startingX, double startingY) {
+        this(0,0,startingX,startingY);
     }
 
     public int getRow() {

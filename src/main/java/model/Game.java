@@ -18,7 +18,7 @@ public class Game implements Runnable {
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
-    private final Board sideBoard;
+    private final SideBoard sideBoard;
     private ShapeBlock currentBlock;
 
     public Game(GraphicsContext gc) {
@@ -33,7 +33,7 @@ public class Game implements Runnable {
         return mainBoard;
     }
 
-    public Board getSideBoard() {
+    public SideBoard getSideBoard() {
         return sideBoard;
     }
 
@@ -50,7 +50,8 @@ public class Game implements Runnable {
                 if (mainBoard.clearLines()) {
                     Painter.paint(this, gc);
                 }
-                currentBlock = spawnBlock();
+                currentBlock = sideBoard.getNextBlockBoard().getNextBlock();
+                sideBoard.getNextBlockBoard().spawnNextBlock();
                 if (!mainBoard.addNewBlock(currentBlock)) {
                     endGame = true;
                 }
