@@ -10,10 +10,10 @@ public class SideBoard extends Board {
     private NextBlockBoard nextBlockBoard;
     private ScoreBoard scoreBoard;
 
-    public SideBoard() {
+    public SideBoard(int highScore) {
         super(ROW, COL, STARTING_X, STARTING_Y);
         nextBlockBoard = new NextBlockBoard();
-        scoreBoard = new ScoreBoard();
+        scoreBoard = new ScoreBoard(highScore);
     }
 
     public NextBlockBoard getNextBlockBoard() {

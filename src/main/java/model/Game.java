@@ -4,6 +4,7 @@ import gui.Painter;
 import javafx.scene.canvas.GraphicsContext;
 import model.block.Block;
 import model.block.ShapeBlock;
+import storage.StorageManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,14 +22,16 @@ public class Game implements Runnable {
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
     private final SideBoard sideBoard;
+    private StorageManager storageManager;
     private ShapeBlock currentBlock;
     private boolean isPause;
     private boolean isTerminate;
 
     public Game(GraphicsContext gc) {
         this.gc = gc;
+        storageManager = new StorageManager();
         mainBoard = new MainBoard();
-        sideBoard = new SideBoard();
+        sideBoard = new SideBoard(storageManager.load());
         currentBlock = spawnBlock(SEED);
         mainBoard.addNewBlock(currentBlock);
         isPause = false;
@@ -61,7 +64,6 @@ public class Game implements Runnable {
                 }
                 Painter.paint(this, gc);
                 if (!fall()) {
-
                     if (mainBoard.clearLines()) {
                         sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared() * LINE_SCORE);
                         Painter.paint(this, gc);
@@ -70,12 +72,14 @@ public class Game implements Runnable {
                     sideBoard.getNextBlockBoard().spawnNextBlock();
                     if (!mainBoard.addNewBlock(currentBlock)) {
                         endGame = true;
+                        break;
                     }
                 }
                 delay(FALL_DELAY);
             }
             delay(FALL_DELAY);
         }
+        storageManager.save(sideBoard.getScoreBoard().getHighScore());
         endGameEffect();
     }
 

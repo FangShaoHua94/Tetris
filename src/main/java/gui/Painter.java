@@ -22,6 +22,7 @@ import static model.block.Block.BORDER_COLOR;
 public class Painter {
 
     private static final String SCORE_TEXT = "Score \n\t %d";
+    private static final String HIGH_SCORE_TEXT = "High Score \n\t %d";
     private static final String NEXT_BLOCK_TEXT = "Next Block";
     private static final Font DISPLAY_FONT = Font.font("Verdana", FontWeight.EXTRA_BOLD, 25);
 
@@ -67,7 +68,10 @@ public class Painter {
     private static void paintScoreBoard(ScoreBoard scoreBoard, GraphicsContext gc) {
         gc.setFont(DISPLAY_FONT);
         gc.setFill(Color.BLACK);
-        gc.fillText(String.format(SCORE_TEXT, scoreBoard.getScore()), scoreBoard.getStartingX(), scoreBoard.getStartingY());
+        gc.fillText(String.format(HIGH_SCORE_TEXT, scoreBoard.getHighScore()),
+                scoreBoard.getStartingX(), scoreBoard.getStartingY());
+        gc.fillText(String.format(SCORE_TEXT, scoreBoard.getScore()),
+                scoreBoard.getStartingX(), scoreBoard.getStartingY()+50);
     }
 
     public static void paintBlock(Block block, GraphicsContext gc, double startingX, double startingY) {
