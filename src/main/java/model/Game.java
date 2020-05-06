@@ -15,6 +15,7 @@ public class Game implements Runnable {
 
     private static final long FALL_DELAY = 200;
     private static final long END_GAME_DELAY = 50;
+    private static final int LINE_SCORE=100;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
@@ -48,6 +49,7 @@ public class Game implements Runnable {
             Painter.paint(this, gc);
             if (!fall()) {
                 if (mainBoard.clearLines()) {
+                    sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared()*LINE_SCORE);
                     Painter.paint(this, gc);
                 }
                 currentBlock = sideBoard.getNextBlockBoard().getNextBlock();

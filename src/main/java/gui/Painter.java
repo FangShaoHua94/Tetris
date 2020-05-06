@@ -3,10 +3,12 @@ package gui;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-import model.Board;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import model.Game;
 import model.MainBoard;
 import model.NextBlockBoard;
+import model.ScoreBoard;
 import model.SideBoard;
 import model.block.Block;
 
@@ -17,14 +19,16 @@ import static model.MainBoard.ROW;
 import static model.SideBoard.SIDE_BOARD_SIZE;
 import static model.block.Block.BORDER_COLOR;
 
-
 public class Painter {
+
+    private static final String SCORE_TEXT = "Score \n\t %d";
+    private static final Font DISPLAY_FONT=Font.font("Verdana", FontWeight.EXTRA_BOLD, 25);
 
     public static void paint(Game game, GraphicsContext gc) {
         requireNonNull(game);
         requireNonNull(gc);
         paintMainBoard(game.getMainBoard(), gc);
-        paintSideBoard(game.getSideBoard(), gc, Color.WHITE);
+        paintSideBoard(game.getSideBoard(), gc);
     }
 
     private static void paintMainBoard(MainBoard mainBoard, GraphicsContext gc) {
@@ -42,17 +46,24 @@ public class Painter {
         }
     }
 
-    private static void paintSideBoard(SideBoard sideBoard, GraphicsContext gc, Color color) {
+    private static void paintSideBoard(SideBoard sideBoard, GraphicsContext gc) {
         requireNonNull(sideBoard);
-        gc.setFill(color);
+        gc.setFill(Color.SILVER);
         gc.fillRect(sideBoard.getStartingX(), sideBoard.getStartingY(),
                 sideBoard.getCol() * SIDE_BOARD_SIZE, sideBoard.getRow() * SIDE_BOARD_SIZE);
         paintNextBlockBoard(sideBoard.getNextBlockBoard(),gc);
+        paintScoreBoard(sideBoard.getScoreBoard(),gc);
     }
 
     private static void paintNextBlockBoard(NextBlockBoard nextBlockBoard, GraphicsContext gc){
         nextBlockBoard.getNextBlock().getBlocks().forEach(block->
                 paintBlock(block,gc,nextBlockBoard.getStartingX(),nextBlockBoard.getStartingY()));
+    }
+
+    private static void paintScoreBoard(ScoreBoard scoreBoard, GraphicsContext gc){
+        gc.setFont(DISPLAY_FONT);
+        gc.setFill(Color.BLACK);
+        gc.fillText(String.format(SCORE_TEXT, scoreBoard.getScore()), scoreBoard.getStartingX(), scoreBoard.getStartingY());
     }
 
     public static void paintBlock(Block block, GraphicsContext gc, double startingX, double startingY) {
