@@ -1,5 +1,6 @@
 package model;
 
+import gui.Painter;
 import model.block.Block;
 import model.block.ShapeBlock;
 
@@ -31,6 +32,10 @@ public class MainBoard extends Board {
             }
         }
         return true;
+    }
+
+    public void addNewBlock(Block block) {
+        mainBoard[block.getRow()][block.getCol()]=block;
     }
 
     public void update() {
@@ -93,5 +98,7 @@ public class MainBoard extends Board {
             }
         }
     }
+
+
 
 }

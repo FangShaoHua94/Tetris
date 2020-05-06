@@ -13,7 +13,8 @@ import static model.block.ShapeBlock.spawnBlock;
 
 public class Game implements Runnable {
 
-    private static final long DELAY = 200;
+    private static final long FALL_DELAY = 200;
+    private static final long END_GAME_DELAY =50;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
@@ -55,7 +56,18 @@ public class Game implements Runnable {
                     System.out.println("end game");
                 }
             }
-            delay();
+            delay(FALL_DELAY);
+        }
+        endGameEffect();
+    }
+
+    public void endGameEffect(){
+        for(int i=0;i<ROW;i++){
+            for(int j=0;j<COL;j++){
+                mainBoard.addNewBlock(new Block(i,j,currentBlock.getBlocks().get(0).getColor()));
+                Painter.paint(this,gc);
+                delay(END_GAME_DELAY);
+            }
         }
     }
 
@@ -91,9 +103,9 @@ public class Game implements Runnable {
         return notOutOfBound(row, col) && mainBoard.validMove(row, col);
     }
 
-    private void delay() {
+    public static void delay(long delayTime) {
         try {
-            TimeUnit.MILLISECONDS.sleep(DELAY);
+            TimeUnit.MILLISECONDS.sleep(delayTime);
         } catch (InterruptedException ie) {
             //suppress
         }
