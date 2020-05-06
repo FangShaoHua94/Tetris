@@ -24,7 +24,8 @@ public class Game implements Runnable {
         this.gc = gc;
         mainBoard = new MainBoard();
         sideBoard = new SideBoard();
-        generateBlock();
+        currentBlock = spawnBlock();
+        mainBoard.addNewBlock(currentBlock);
     }
 
     public MainBoard getMainBoard() {
@@ -39,20 +40,20 @@ public class Game implements Runnable {
         return currentBlock;
     }
 
-    public void generateBlock() {
-        currentBlock = spawnBlock();
-        mainBoard.addNewBlock(currentBlock);
-    }
-
     @Override
     public void run() {
-        while (true) {
+        boolean endGame=false;
+        while (!endGame) {
             Painter.paint(this, gc);
             if (!fall()) {
                 if (mainBoard.clearLines()) {
                     Painter.paint(this, gc);
                 }
-                generateBlock();
+                currentBlock = spawnBlock();
+                if(!mainBoard.addNewBlock(currentBlock)){
+                    endGame=true;
+                    System.out.println("end game");
+                }
             }
             delay();
         }
