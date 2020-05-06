@@ -26,6 +26,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Tetris");
+        stage.setResizable(false);
         stage.show();
         (new Thread(game)).start();
     }

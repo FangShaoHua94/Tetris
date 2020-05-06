@@ -22,20 +22,20 @@ public class MainBoard extends Board {
 
     public boolean addNewBlock(ShapeBlock newBlock) {
         currentBlock = newBlock;
-        for(int i=0;i<newBlock.getBlocks().size();i++){
-            int row=newBlock.getBlocks().get(i).getRow();
-            int col=newBlock.getBlocks().get(i).getCol();
-            if(mainBoard[row][col]!=null){
+        for (int i = 0; i < newBlock.getBlocks().size(); i++) {
+            int row = newBlock.getBlocks().get(i).getRow();
+            int col = newBlock.getBlocks().get(i).getCol();
+            if (mainBoard[row][col] != null) {
                 return false;
-            }else{
-                mainBoard[row][col]=newBlock.getBlocks().get(i);
+            } else {
+                mainBoard[row][col] = newBlock.getBlocks().get(i);
             }
         }
         return true;
     }
 
     public void addNewBlock(Block block) {
-        mainBoard[block.getRow()][block.getCol()]=block;
+        mainBoard[block.getRow()][block.getCol()] = block;
     }
 
     public void update() {
@@ -98,7 +98,6 @@ public class MainBoard extends Board {
             }
         }
     }
-
 
 
 }

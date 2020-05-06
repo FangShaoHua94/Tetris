@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class SBlock extends ShapeBlock{
+public class SBlock extends ShapeBlock {
 
     private static final Color COLOR = Color.GREEN;
     private State state;
@@ -22,8 +22,8 @@ public class SBlock extends ShapeBlock{
         ArrayList<Block> blocks = new ArrayList<>();
         blocks.add(new Block(SPAWNING_ROW, 6, COLOR));
         blocks.add(new Block(SPAWNING_ROW, 7, COLOR));
-        blocks.add(new Block(SPAWNING_ROW+1, 5, COLOR));
-        blocks.add(new Block(SPAWNING_ROW+1, 6, COLOR));
+        blocks.add(new Block(SPAWNING_ROW + 1, 5, COLOR));
+        blocks.add(new Block(SPAWNING_ROW + 1, 6, COLOR));
         return new SBlock(blocks);
     }
 
@@ -35,13 +35,13 @@ public class SBlock extends ShapeBlock{
         switch (state) {
         case HORIZONTAL:
             blocks.add(new Block(pivotRow - 1, pivotCol, COLOR));
-            blocks.add(new Block(pivotRow + 1, pivotCol+1, COLOR));
-            blocks.add(new Block(pivotRow , pivotCol+1, COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol + 1, COLOR));
+            blocks.add(new Block(pivotRow, pivotCol + 1, COLOR));
             break;
         case VERTICAL:
             blocks.add(new Block(pivotRow, pivotCol + 1, COLOR));
-            blocks.add(new Block(pivotRow+1, pivotCol - 1, COLOR));
-            blocks.add(new Block(pivotRow+1, pivotCol, COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol - 1, COLOR));
+            blocks.add(new Block(pivotRow + 1, pivotCol, COLOR));
             break;
         default:
             break;
@@ -57,20 +57,19 @@ public class SBlock extends ShapeBlock{
         switch (state) {
         case HORIZONTAL:
             blocks.get(1).setPos(pivotRow - 1, pivotCol);
-            blocks.get(2).setPos(pivotRow + 1, pivotCol+1);
-            blocks.get(3).setPos(pivotRow, pivotCol+1);
+            blocks.get(2).setPos(pivotRow + 1, pivotCol + 1);
+            blocks.get(3).setPos(pivotRow, pivotCol + 1);
             state = State.VERTICAL;
             break;
         case VERTICAL:
             blocks.get(1).setPos(pivotRow, pivotCol + 1);
-            blocks.get(2).setPos(pivotRow+1, pivotCol -1);
-            blocks.get(3).setPos(pivotRow+1, pivotCol);
+            blocks.get(2).setPos(pivotRow + 1, pivotCol - 1);
+            blocks.get(3).setPos(pivotRow + 1, pivotCol);
             state = State.HORIZONTAL;
             break;
         default:
             break;
         }
     }
-
 
 }
