@@ -55,6 +55,12 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             } else {
                 game.pause();
             }
+            break;
+        case Q:
+            game.terminateGame();
+            game = new Game(gc);
+            (new Thread(game)).start();
+            break;
         default:
             break;
         }

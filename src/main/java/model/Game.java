@@ -16,20 +16,23 @@ public class Game implements Runnable {
     private static final long FALL_DELAY = 200;
     private static final long END_GAME_DELAY = 50;
     private static final int LINE_SCORE = 100;
+    private static final int SEED = 3;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
     private final SideBoard sideBoard;
     private ShapeBlock currentBlock;
     private boolean isPause;
+    private boolean isTerminate;
 
     public Game(GraphicsContext gc) {
         this.gc = gc;
         mainBoard = new MainBoard();
         sideBoard = new SideBoard();
-        currentBlock = spawnBlock();
+        currentBlock = spawnBlock(SEED);
         mainBoard.addNewBlock(currentBlock);
         isPause = false;
+        isTerminate=false;
     }
 
     public MainBoard getMainBoard() {
@@ -53,8 +56,12 @@ public class Game implements Runnable {
         boolean endGame = false;
         while (!endGame) {
             while (!isPause) {
+                if (isTerminated()) {
+                    return;
+                }
                 Painter.paint(this, gc);
                 if (!fall()) {
+
                     if (mainBoard.clearLines()) {
                         sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared() * LINE_SCORE);
                         Painter.paint(this, gc);
@@ -78,6 +85,14 @@ public class Game implements Runnable {
 
     public void unpause() {
         isPause = false;
+    }
+
+    public void terminateGame() {
+        isTerminate = true;
+    }
+
+    private boolean isTerminated() {
+        return isTerminate;
     }
 
     public void endGameEffect() {

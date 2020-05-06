@@ -6,13 +6,14 @@ import static model.block.ShapeBlock.spawnBlock;
 
 public class NextBlockBoard extends Board {
 
+    private static final int SEED=1;
     private static final double STARTING_X = 250;
     private static final double STARTING_Y = 200;
     private ShapeBlock nextBlock;
 
     public NextBlockBoard() {
         super(STARTING_X, STARTING_Y);
-        nextBlock = spawnBlock();
+        nextBlock = spawnBlock(SEED);
     }
 
     public ShapeBlock getNextBlock() {
@@ -20,7 +21,7 @@ public class NextBlockBoard extends Board {
     }
 
     public void spawnNextBlock() {
-        nextBlock = spawnBlock();
+        nextBlock = spawnBlock(SEED);
     }
 
 
