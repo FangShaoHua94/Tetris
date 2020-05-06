@@ -9,7 +9,7 @@ public class ScoreBoard extends Board {
 
     public ScoreBoard(int highScore) {
         super(STARTING_X, STARTING_Y);
-        this.highScore=highScore;
+        this.highScore = highScore;
         score = 0;
     }
 
@@ -18,9 +18,9 @@ public class ScoreBoard extends Board {
         updateHighScore();
     }
 
-    public void updateHighScore(){
-        if(highScore<score){
-            highScore=score;
+    public void updateHighScore() {
+        if (highScore < score) {
+            highScore = score;
         }
     }
 
@@ -28,7 +28,7 @@ public class ScoreBoard extends Board {
         return score;
     }
 
-    public int getHighScore(){
+    public int getHighScore() {
         return highScore;
     }
 

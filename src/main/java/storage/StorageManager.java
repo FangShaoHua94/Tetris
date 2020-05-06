@@ -26,12 +26,12 @@ public class StorageManager {
     }
 
     public int load() {
-        int highScore=0;
+        int highScore = 0;
         try (FileReader fr = new FileReader(file)) {
             BufferedReader br = new BufferedReader(fr);
-            String line=br.readLine();
-            if(line!=null){
-                highScore= Integer.parseInt(line);
+            String line = br.readLine();
+            if (line != null) {
+                highScore = Integer.parseInt(line);
             }
             br.close();
         } catch (Exception e) {
@@ -40,10 +40,10 @@ public class StorageManager {
         return highScore;
     }
 
-    public void save(int highScore)  {
+    public void save(int highScore) {
         try (FileWriter fw = new FileWriter(file)) {
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(""+highScore);
+            bw.write("" + highScore);
             bw.close();
         } catch (IOException ex) {
 

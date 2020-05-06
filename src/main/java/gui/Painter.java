@@ -71,7 +71,7 @@ public class Painter {
         gc.fillText(String.format(HIGH_SCORE_TEXT, scoreBoard.getHighScore()),
                 scoreBoard.getStartingX(), scoreBoard.getStartingY());
         gc.fillText(String.format(SCORE_TEXT, scoreBoard.getScore()),
-                scoreBoard.getStartingX(), scoreBoard.getStartingY()+50);
+                scoreBoard.getStartingX(), scoreBoard.getStartingY() + 50);
     }
 
     public static void paintBlock(Block block, GraphicsContext gc, double startingX, double startingY) {

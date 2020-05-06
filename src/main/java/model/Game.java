@@ -35,7 +35,7 @@ public class Game implements Runnable {
         currentBlock = spawnBlock(SEED);
         mainBoard.addNewBlock(currentBlock);
         isPause = false;
-        isTerminate=false;
+        isTerminate = false;
     }
 
     public MainBoard getMainBoard() {
@@ -102,7 +102,7 @@ public class Game implements Runnable {
     public void endGameEffect() {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
-                if(isTerminate){
+                if (isTerminate) {
                     return;
                 }
                 mainBoard.addNewBlock(new Block(i, j, currentBlock.getBlocks().get(0).getColor()));

@@ -25,7 +25,7 @@ public abstract class ShapeBlock implements Rotatable {
     }
 
     public static ShapeBlock spawnBlock(int seed) {
-        Random random = new Random(System.currentTimeMillis()+seed);
+        Random random = new Random(System.currentTimeMillis() + seed);
         switch (random.nextInt(7)) {
         case 0:
             return spawnIBlock();
