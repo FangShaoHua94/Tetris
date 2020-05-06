@@ -66,6 +66,7 @@ public class Game implements Runnable {
                 if (!fall()) {
                     if (mainBoard.clearLines()) {
                         sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared() * LINE_SCORE);
+                        storageManager.save(sideBoard.getScoreBoard().getHighScore());
                         Painter.paint(this, gc);
                     }
                     currentBlock = sideBoard.getNextBlockBoard().getNextBlock();
@@ -79,7 +80,6 @@ public class Game implements Runnable {
             }
             delay(FALL_DELAY);
         }
-        storageManager.save(sideBoard.getScoreBoard().getHighScore());
         endGameEffect();
     }
 
