@@ -25,28 +25,35 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         ArrayList<Block> blocks = currentBlock.getBlocks();
         switch (keyEvent.getCode()) {
         case DOWN:
-            if (blocks.stream().allMatch(block -> game.isValidDownMove(block))) {
+            if (!game.isPaused() && blocks.stream().allMatch(block -> game.isValidDownMove(block))) {
                 blocks.forEach(Block::moveDown);
                 game.getMainBoard().update();
             }
             break;
         case LEFT:
-            if (blocks.stream().allMatch(block -> game.isValidLeftMove(block))) {
+            if (!game.isPaused() && blocks.stream().allMatch(block -> game.isValidLeftMove(block))) {
                 blocks.forEach(Block::moveLeft);
                 game.getMainBoard().update();
             }
             break;
         case RIGHT:
-            if (blocks.stream().allMatch(block -> game.isValidRightMove(block))) {
+            if (!game.isPaused() && blocks.stream().allMatch(block -> game.isValidRightMove(block))) {
                 blocks.forEach(Block::moveRight);
                 game.getMainBoard().update();
             }
             break;
         case SPACE:
-            if (currentBlock.rotatingBlocks().stream().allMatch(block ->
+            if (!game.isPaused() && currentBlock.rotatingBlocks().stream().allMatch(block ->
                     game.isValidRotate(block.getRow(), block.getCol()))) {
                 currentBlock.rotate();
                 game.getMainBoard().update();
+            }
+            break;
+        case ENTER:
+            if (game.isPaused()) {
+                game.unpause();
+            } else {
+                game.pause();
             }
         default:
             break;

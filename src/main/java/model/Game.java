@@ -15,12 +15,13 @@ public class Game implements Runnable {
 
     private static final long FALL_DELAY = 200;
     private static final long END_GAME_DELAY = 50;
-    private static final int LINE_SCORE=100;
+    private static final int LINE_SCORE = 100;
 
     private final GraphicsContext gc;
     private final MainBoard mainBoard;
     private final SideBoard sideBoard;
     private ShapeBlock currentBlock;
+    private boolean isPause;
 
     public Game(GraphicsContext gc) {
         this.gc = gc;
@@ -28,6 +29,7 @@ public class Game implements Runnable {
         sideBoard = new SideBoard();
         currentBlock = spawnBlock();
         mainBoard.addNewBlock(currentBlock);
+        isPause = false;
     }
 
     public MainBoard getMainBoard() {
@@ -42,25 +44,40 @@ public class Game implements Runnable {
         return currentBlock;
     }
 
+    public boolean isPaused() {
+        return isPause;
+    }
+
     @Override
     public void run() {
         boolean endGame = false;
         while (!endGame) {
-            Painter.paint(this, gc);
-            if (!fall()) {
-                if (mainBoard.clearLines()) {
-                    sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared()*LINE_SCORE);
-                    Painter.paint(this, gc);
+            while (!isPause) {
+                Painter.paint(this, gc);
+                if (!fall()) {
+                    if (mainBoard.clearLines()) {
+                        sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared() * LINE_SCORE);
+                        Painter.paint(this, gc);
+                    }
+                    currentBlock = sideBoard.getNextBlockBoard().getNextBlock();
+                    sideBoard.getNextBlockBoard().spawnNextBlock();
+                    if (!mainBoard.addNewBlock(currentBlock)) {
+                        endGame = true;
+                    }
                 }
-                currentBlock = sideBoard.getNextBlockBoard().getNextBlock();
-                sideBoard.getNextBlockBoard().spawnNextBlock();
-                if (!mainBoard.addNewBlock(currentBlock)) {
-                    endGame = true;
-                }
+                delay(FALL_DELAY);
             }
             delay(FALL_DELAY);
         }
         endGameEffect();
+    }
+
+    public void pause() {
+        isPause = true;
+    }
+
+    public void unpause() {
+        isPause = false;
     }
 
     public void endGameEffect() {

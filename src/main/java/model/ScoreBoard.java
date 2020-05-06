@@ -1,6 +1,6 @@
 package model;
 
-public class ScoreBoard extends Board{
+public class ScoreBoard extends Board {
 
     private static final int ROW = 24;
     private static final int COL = 8;
@@ -10,14 +10,14 @@ public class ScoreBoard extends Board{
 
     public ScoreBoard() {
         super(ROW, COL, STARTING_X, STARTING_Y);
-        score=0;
+        score = 0;
     }
 
-    public void AddScore(int score){
-        this.score+=score;
+    public void AddScore(int score) {
+        this.score += score;
     }
 
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 

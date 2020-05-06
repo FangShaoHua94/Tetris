@@ -17,7 +17,7 @@ public abstract class Board {
     }
 
     public Board(double startingX, double startingY) {
-        this(0,0,startingX,startingY);
+        this(0, 0, startingX, startingY);
     }
 
     public int getRow() {

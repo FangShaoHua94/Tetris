@@ -12,15 +12,15 @@ public class SideBoard extends Board {
 
     public SideBoard() {
         super(ROW, COL, STARTING_X, STARTING_Y);
-        nextBlockBoard= new NextBlockBoard();
+        nextBlockBoard = new NextBlockBoard();
         scoreBoard = new ScoreBoard();
     }
 
-    public NextBlockBoard getNextBlockBoard(){
+    public NextBlockBoard getNextBlockBoard() {
         return nextBlockBoard;
     }
 
-    public ScoreBoard getScoreBoard(){
+    public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
 

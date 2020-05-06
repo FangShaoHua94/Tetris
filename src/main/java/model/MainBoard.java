@@ -19,7 +19,7 @@ public class MainBoard extends Board {
     public MainBoard() {
         super(ROW, COL, STARTING_X, STARTING_Y);
         mainBoard = new Block[ROW][COL];
-        lineCleared=0;
+        lineCleared = 0;
     }
 
     public boolean addNewBlock(ShapeBlock newBlock) {
@@ -62,13 +62,13 @@ public class MainBoard extends Board {
                 || currentBlock.getBlocks().stream().anyMatch(block -> block.equals(mainBoard[row][col]));
     }
 
-    public int getLineCleared(){
+    public int getLineCleared() {
         return lineCleared;
     }
 
     public boolean clearLines() {
         boolean clearLine = false;
-        lineCleared=0;
+        lineCleared = 0;
         for (int i = 0; i < ROW; i++) {
             if (checkLineClear(i)) {
                 clearLine(i);
