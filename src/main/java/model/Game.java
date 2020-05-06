@@ -102,6 +102,9 @@ public class Game implements Runnable {
     public void endGameEffect() {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
+                if(isTerminate){
+                    return;
+                }
                 mainBoard.addNewBlock(new Block(i, j, currentBlock.getBlocks().get(0).getColor()));
                 Painter.paint(this, gc);
                 delay(END_GAME_DELAY);
