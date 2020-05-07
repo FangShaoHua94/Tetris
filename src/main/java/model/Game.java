@@ -17,7 +17,7 @@ public class Game implements Runnable {
 
     private static final long FALL_DELAY = 200;
     private static final long END_GAME_DELAY = 10;
-    private static final long SONG_DELAY=2000;
+    private static final long SONG_DELAY = 2000;
     private static final int LINE_SCORE = 100;
     private static final int SEED = 3;
 
