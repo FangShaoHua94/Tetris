@@ -1,5 +1,6 @@
 import gui.KeyHandler;
 import gui.Painter;
+import gui.Sound;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
