@@ -1,6 +1,7 @@
 package model;
 
 import gui.Painter;
+import gui.Sound;
 import javafx.scene.canvas.GraphicsContext;
 import model.block.Block;
 import model.block.ShapeBlock;
@@ -15,7 +16,7 @@ import static model.block.ShapeBlock.spawnBlock;
 public class Game implements Runnable {
 
     private static final long FALL_DELAY = 200;
-    private static final long END_GAME_DELAY = 50;
+    private static final long END_GAME_DELAY = 10;
     private static final int LINE_SCORE = 100;
     private static final int SEED = 3;
 
@@ -56,6 +57,7 @@ public class Game implements Runnable {
 
     @Override
     public void run() {
+        Sound.START.play();
         boolean endGame = false;
         while (!endGame) {
             while (!isPause) {
@@ -64,7 +66,9 @@ public class Game implements Runnable {
                 }
                 Painter.paint(this, gc);
                 if (!fall()) {
+                    Sound.FALL.play();
                     if (mainBoard.clearLines()) {
+                        Sound.CLEAR.play();
                         sideBoard.getScoreBoard().AddScore(mainBoard.getLineCleared() * LINE_SCORE);
                         storageManager.save(sideBoard.getScoreBoard().getHighScore());
                         Painter.paint(this, gc);
@@ -80,6 +84,7 @@ public class Game implements Runnable {
             }
             delay(FALL_DELAY);
         }
+        Sound.GAME_OVER.play();
         endGameEffect();
     }
 
