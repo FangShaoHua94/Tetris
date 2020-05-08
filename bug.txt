@@ -1,0 +1,8 @@
+bug 1:
+end game effect + pause + unpause
+
+bug 2:
+random gui error: canvas unrecognised;
+
+bug 3:
+able to move block before start, during the start music
