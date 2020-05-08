@@ -20,10 +20,6 @@ public abstract class ShapeBlock implements Rotatable {
         this.blocks = blocks;
     }
 
-    public ArrayList<Block> getBlocks() {
-        return blocks;
-    }
-
     public static ShapeBlock spawnBlock(int seed) {
         Random random = new Random(System.currentTimeMillis() + seed);
         switch (random.nextInt(7)) {
@@ -42,6 +38,10 @@ public abstract class ShapeBlock implements Rotatable {
         default:
             return spawnOBlock();
         }
+    }
+
+    public ArrayList<Block> getBlocks() {
+        return blocks;
     }
 
 }

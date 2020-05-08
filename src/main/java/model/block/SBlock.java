@@ -9,10 +9,6 @@ public class SBlock extends ShapeBlock {
     private static final Color COLOR = Color.GREEN;
     private State state;
 
-    enum State {
-        HORIZONTAL, VERTICAL
-    }
-
     public SBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.HORIZONTAL;
@@ -70,6 +66,10 @@ public class SBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        HORIZONTAL, VERTICAL
     }
 
 }

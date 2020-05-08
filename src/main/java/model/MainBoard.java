@@ -1,6 +1,5 @@
 package model;
 
-import gui.Painter;
 import model.block.Block;
 import model.block.ShapeBlock;
 

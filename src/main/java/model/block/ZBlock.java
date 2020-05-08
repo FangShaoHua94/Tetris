@@ -9,10 +9,6 @@ public class ZBlock extends ShapeBlock {
     private static final Color COLOR = Color.RED;
     private State state;
 
-    enum State {
-        HORIZONTAL, VERTICAL
-    }
-
     public ZBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.HORIZONTAL;
@@ -70,5 +66,9 @@ public class ZBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        HORIZONTAL, VERTICAL
     }
 }

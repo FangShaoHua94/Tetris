@@ -40,6 +40,14 @@ public class Game implements Runnable {
         isTerminate = false;
     }
 
+    public static void delay(long delayTime) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(delayTime);
+        } catch (InterruptedException ie) {
+            //suppress
+        }
+    }
+
     public MainBoard getMainBoard() {
         return mainBoard;
     }
@@ -105,7 +113,7 @@ public class Game implements Runnable {
         isTerminate = true;
     }
 
-    private boolean isTerminated() {
+    public boolean isTerminated() {
         return isTerminate;
     }
 
@@ -152,13 +160,5 @@ public class Game implements Runnable {
 
     public boolean isValidRotate(int row, int col) {
         return notOutOfBound(row, col) && mainBoard.validMove(row, col);
-    }
-
-    public static void delay(long delayTime) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(delayTime);
-        } catch (InterruptedException ie) {
-            //suppress
-        }
     }
 }

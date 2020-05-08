@@ -9,10 +9,6 @@ public class JBlock extends ShapeBlock {
     private static final Color COLOR = Color.BLUE;
     private State state;
 
-    enum State {
-        UP, DOWN, LEFT, RIGHT
-    }
-
     public JBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.RIGHT;
@@ -92,6 +88,10 @@ public class JBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        UP, DOWN, LEFT, RIGHT
     }
 
 }

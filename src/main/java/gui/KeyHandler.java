@@ -51,8 +51,12 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             break;
         case ENTER:
             if (game.isPaused()) {
+                Sound.UNPAUSE.play();
+                Sound.THEME.loop();
                 game.unpause();
             } else {
+                Sound.PAUSE.play();
+                Sound.THEME.stop();
                 game.pause();
             }
             break;

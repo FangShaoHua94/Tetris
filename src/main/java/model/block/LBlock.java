@@ -9,10 +9,6 @@ public class LBlock extends ShapeBlock {
     private static final Color COLOR = Color.ORANGE;
     private State state;
 
-    enum State {
-        UP, DOWN, LEFT, RIGHT
-    }
-
     public LBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.LEFT;
@@ -92,6 +88,10 @@ public class LBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        UP, DOWN, LEFT, RIGHT
     }
 
 }

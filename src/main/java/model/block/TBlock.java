@@ -9,10 +9,6 @@ public class TBlock extends ShapeBlock {
     private static final Color COLOR = Color.PURPLE;
     private State state;
 
-    enum State {
-        UP, DOWN, LEFT, RIGHT
-    }
-
     public TBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.UP;
@@ -92,5 +88,9 @@ public class TBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        UP, DOWN, LEFT, RIGHT
     }
 }

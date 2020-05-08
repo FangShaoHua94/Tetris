@@ -19,16 +19,16 @@ public class Block {
         return row;
     }
 
+    public void setRow(int row) {
+        setPos(row, col);
+    }
+
     public int getCol() {
         return col;
     }
 
     public Color getColor() {
         return color;
-    }
-
-    public void setRow(int row) {
-        setPos(row, col);
     }
 
     public void setPos(int row, int col) {

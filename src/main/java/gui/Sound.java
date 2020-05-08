@@ -12,15 +12,12 @@ public enum Sound {
     CLEAR("clear.wav"),
     FALL("fall.wav"),
     GAME_OVER("gameOver.wav"),
+    PAUSE("pause.wav"),
     START("start.wav"),
-    THEME("theme.wav");
-
-    public static enum Volume {
-        MUTE, LOW, MEDIUM, HIGH;
-    }
+    THEME("theme.wav"),
+    UNPAUSE("unpause.wav");
 
     public static Volume volume = Volume.MEDIUM;
-
     private Clip clip;
 
     Sound(String soundFileName) {
@@ -56,6 +53,10 @@ public enum Sound {
 
     public void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    public enum Volume {
+        MUTE, LOW, MEDIUM, HIGH
     }
 
 }

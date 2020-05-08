@@ -9,10 +9,6 @@ public class IBlock extends ShapeBlock {
     private static final Color COLOR = Color.SKYBLUE;
     private State state;
 
-    enum State {
-        HORIZONTAL, VERTICAL
-    }
-
     public IBlock(ArrayList<Block> blocks) {
         super(blocks);
         state = State.HORIZONTAL;
@@ -71,6 +67,10 @@ public class IBlock extends ShapeBlock {
         default:
             break;
         }
+    }
+
+    enum State {
+        HORIZONTAL, VERTICAL
     }
 
 }
